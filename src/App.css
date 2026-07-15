@@ -549,10 +549,168 @@ body {
   filter: drop-shadow(0 0 8px rgba(245,158,11,0.3));
 }
 
+/* ── Invoice Summary ────────────────────────────────────────────────── */
+.invoice-summary {
+  background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(99,102,241,0.08) 50%, rgba(139,92,246,0.06) 100%);
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-md), 0 0 40px rgba(99,102,241,0.06);
+  animation: fadeUp 0.5s 0.45s ease both;
+  overflow: hidden;
+}
+.invoice-summary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--success));
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.summary-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.summary-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 8px rgba(99,102,241,0.4));
+}
+.summary-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.summary-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.summary-badge {
+  background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.08));
+  border: 1px solid rgba(16,185,129,0.35);
+  color: var(--success);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.25); }
+  50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+}
+
+.summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Details grid */
+.summary-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.summary-detail-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.summary-detail-card:hover {
+  border-color: rgba(99,102,241,0.3);
+  background: rgba(99,102,241,0.04);
+}
+.summary-detail-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.summary-detail-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  word-break: break-word;
+}
+
+/* Summary Totals */
+.summary-totals {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.summary-total-label {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.summary-total-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.summary-gst {
+  color: var(--success);
+}
+.summary-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent);
+  margin: 2px 0;
+}
+.summary-grand {
+  margin-top: 2px;
+}
+.summary-grand-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.summary-grand-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(245,158,11,0.3));
+}
+
 /* ── Invoice Actions ─────────────────────── */
 .invoice-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
   position: relative;
   z-index: 1;
   animation: fadeUp 0.5s 0.5s ease both;
@@ -583,6 +741,202 @@ body {
 .btn-print:active {
   transform: translateY(0);
   box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+}
+
+/* Export as PDF button */
+.btn-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+  letter-spacing: 0.02em;
+}
+.btn-pdf:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.45);
+}
+.btn-pdf:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+}
+
+/* ── Part 3: Company Information ─────────── */
+.company-section { animation-delay: 0.15s; }
+
+.company-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Part 3: Currency Selector ───────────── */
+.currency-section { animation-delay: 0.18s; }
+
+.currency-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.currency-select {
+  flex: 1;
+  max-width: 300px;
+  background: var(--bg-input);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.currency-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.currency-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.currency-symbol-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(139,92,246,0.14));
+  border: 1px solid rgba(99,102,241,0.35);
+  border-radius: var(--radius-md);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  box-shadow: 0 0 12px rgba(99,102,241,0.15);
+  transition: all var(--transition);
+}
+
+.currency-code-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Part 3: Discount Section ────────────── */
+.discount-section { animation-delay: 0.35s; }
+
+.discount-field-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.discount-group { max-width: 200px; }
+
+.discount-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.discount-input {
+  padding-right: 36px;
+}
+
+.discount-pct-symbol {
+  position: absolute;
+  right: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.discount-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05));
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.discount-preview-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.discount-preview-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+/* Discount row in totals */
+.discount-row { padding: 2px 0; }
+.discount-label { font-size: 0.85rem; color: var(--danger); }
+.discount-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* Discount row in summary */
+.summary-discount { color: var(--danger) !important; }
+
+/* ── Part 3: Notes & Terms Section ──────── */
+.notes-section { animation-delay: 0.42s; }
+
+.notes-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.notes-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+
+.payment-terms-select {
+  background: var(--bg-input);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+.payment-terms-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 
 /* ── Print Styles ────────────────────────── */
@@ -625,4 +979,17 @@ body {
 
   .item-total { font-size: 1.05rem; }
   .invoice-title { font-size: 1.8rem; }
+
+  /* Summary responsive */
+  .summary-details-grid { grid-template-columns: 1fr; }
+  .invoice-actions { flex-direction: column; }
+  .btn-print, .btn-pdf { width: 100%; justify-content: center; }
+
+  /* Part 3 responsive */
+  .company-fields { grid-template-columns: 1fr; }
+  .notes-fields { grid-template-columns: 1fr; }
+  .currency-select-wrapper { flex-direction: column; align-items: flex-start; }
+  .currency-select { max-width: 100%; }
+  .discount-field-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .discount-group { max-width: 100%; width: 100%; }
 }
