@@ -436,7 +436,7 @@ function App() {
               </defs>
             </svg>
           </div>
-          <h1 className="invoice-title">Invoice Generator</h1>
+          <h1 className="invoice-title">Online Invoice Generator</h1>
           <p className="invoice-subtitle">Professional invoices in seconds</p>
         </div>
 

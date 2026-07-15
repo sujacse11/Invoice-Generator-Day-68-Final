@@ -1,7 +1,7 @@
 {
-  "name": "invoice-generator-app",
+  "name": "online-invoice-generator",
   "private": true,
-  "homepage": "https://sujacse11.github.io/Invoice-Generator-Day-66-and-67",
+  "homepage": "https://sujacse11.github.io/Invoice-Generator-Day-68-Final",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
